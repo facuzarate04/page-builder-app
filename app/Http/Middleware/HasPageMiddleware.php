@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Services\Page\PageService;
+use App\Services\PageSettings\PageService;
 use Closure;
 use Illuminate\Http\Request;
 

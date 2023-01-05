@@ -11,7 +11,20 @@ class PageHeader extends Model
 
     protected $table = 'page_headers';
 
-    
+    protected $fillable = [
+        'page_id',
+        'title',
+        'subtitle',
+        'avatar',
+        'avatar_is_active',
+        'banner',
+        'banner_is_active'
+    ];
+
+    protected $casts = [
+        'avatar_is_active' => 'boolean',
+        'banner_is_active' => 'boolean',
+    ];
 
     public function page()
     {

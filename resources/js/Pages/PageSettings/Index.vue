@@ -4,7 +4,6 @@ import { Head } from '@inertiajs/inertia-vue3';
 import { ChevronDownIcon, ComputerDesktopIcon, LinkIcon, GlobeAltIcon } from '@heroicons/vue/24/solid'
 import { Link } from '@inertiajs/inertia-vue3'
 import BlockModel from '@/Models/Block.js'
-import { onMounted } from '@vue/runtime-core';
 import BlockEmptyState from '@/Components/PageSettings/BlockEmptyState.vue';
 import Draggable from 'vuedraggable'
 
@@ -31,7 +30,7 @@ const props = defineProps({
                     <!-- Header -->
                     <div v-if="BlockModel.isHeaderBlock(block.type)" class="bg-white p-10 shadow-sm rounded-md flex items-center justify-between">
                         <span class="font-semibold">Header</span>
-                        <Link :href="route('dashboard')">
+                        <Link :href="route('page.header.index')">
                             <ChevronDownIcon class="h-6 w-6"/>
                         </Link>
                     </div>
@@ -45,21 +44,21 @@ const props = defineProps({
                     <!-- Socials -->
                     <div v-if="BlockModel.isSocialBlock(block.type)" class="bg-white p-10 shadow-sm rounded-md flex items-center justify-between">
                         <span class="font-semibold">Socials</span>
-                        <Link :href="route('dashboard')">
+                        <Link :href="route('page.social.index')">
                             <ChevronDownIcon class="h-6 w-6"/>
                         </Link>
                     </div>
                 </div>
                 <BlockEmptyState v-if="!BlockModel.hasHeaderBlock(blocks.data)" 
                     :blockName="'Header Block'"
-                    :createUrl="route('dashboard')">
+                    :createUrl="route('page.header.index')">
                     <template #icon>
                         <ComputerDesktopIcon class="h-6 w-6 mx-auto" aria-hidden="true" />
                     </template>
                 </BlockEmptyState>
                 <BlockEmptyState v-if="!BlockModel.hasSocialBlock(blocks.data)" 
                     :blockName="'Socials Block'"
-                    :createUrl="route('dashboard')">
+                    :createUrl="route('page.social.index')">
                     <template #icon>
                         <GlobeAltIcon class="h-6 w-6 mx-auto" aria-hidden="true" />
                     </template>

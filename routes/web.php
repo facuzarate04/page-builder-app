@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Dashboard\IndexPageSettingsController;
+use App\Http\Controllers\Dashboard\PageSettings\PageHeader\PageHeaderController;
+use App\Http\Controllers\Dashboard\PageSettings\PageSocial\PageSocialController;
+use App\Http\Controllers\Dashboard\PageSettings\PageSocial\UpsertPageSocialLinksController;
 use App\Http\Controllers\Page\IndexPageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -33,7 +36,17 @@ Route::get('/dashboard', function () {
 
 Route::prefix('page')->name('page.')->middleware(['auth', 'verified', 'has.page'])->group(function(){
     Route::get('/', IndexPageSettingsController::class)->name('index');
-    Route::get('/header', IndexPageSettingsController::class)->name('header.create');
+
+    Route::name('header.')->prefix('header')->group(function(){
+        Route::get('/', [PageHeaderController::class, 'index'])->name('index');
+        Route::put('{pageHeader}', [PageHeaderController::class, 'update'])->name('update');
+    });
+    Route::name('social.')->prefix('social')->group(function(){
+        Route::get('/', [PageSocialController::class, 'index'])->name('index');
+        Route::name('links.')->prefix('{pageSocial}/links')->group(function(){
+            Route::put('/', UpsertPageSocialLinksController::class)->name('upsert');
+        });
+    });
 
 });
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('page_id');
             $table->morphs('blockable');
             $table->integer('order')->default(1);
+            $table->boolean('is_active')->default(1);
 
             $table->foreign('page_id')->references('id')->on('pages');
             $table->timestamps();

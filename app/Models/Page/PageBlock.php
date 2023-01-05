@@ -11,6 +11,12 @@ class PageBlock extends Model
 
     protected $table = 'page_blocks';
 
+    protected $fillable = [
+        'page_id',
+        'blockable_id',
+        'blockable_type',
+    ];
+
     public function page()
     {
         return $this->belongsTo(Page::class, 'page_id');
@@ -20,4 +26,22 @@ class PageBlock extends Model
     {
         return $this->morphTo();
     }
+
+    /* Scopes */
+
+    public function scopeHeaderBlock($query)
+    {
+        return $query->where('blockable_type', PageHeader::class);
+    }
+
+    public function scopeLinkBlock($query)
+    {
+        return $query->where('blockable_type', PageLink::class);
+    }
+
+    public function scopeSocialBlock($query)
+    {
+        return $query->where('blockable_type', PageSocial::class);
+    }
+
 }

@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(PlatformsSeeder::class);
 
         $john = \App\Models\User::factory()->has(
             Page::factory(),
@@ -55,6 +56,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        $jane = \App\Models\User::factory()->create([
+            'name' => 'Jane Doe',
+            'email' => 'jane@example.com',
+            'username' => 'jane.doe'
+        ]);
 
 
     }
