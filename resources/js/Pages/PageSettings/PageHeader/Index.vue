@@ -38,18 +38,18 @@ function update() {
 </script>
 
 <template>
-    <Head title="Header Block" />
+    <Head title="Header | My Page" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Header Block</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">My Page</h2>
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-2">
                 <div class="bg-white p-10 shadow-sm rounded-md space-y-4">
                     <div class="flex items-center justify-between">
-                        <span class="font-semibold">Header</span>
+                        <span class="font-semibold">Header Block</span>
                         <Link :href="route('page.index')">
                             <ChevronUpIcon class="h-6 w-6"/>
                         </Link>

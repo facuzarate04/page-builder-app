@@ -11,6 +11,10 @@ class Page extends Model
     use HasFactory;
 
     protected $table = 'pages';
+
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
     
 
     public function owner()

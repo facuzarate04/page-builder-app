@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Dashboard;
 
+use App\Http\Resources\MyPage\BlockableResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PageBlockResource extends JsonResource
@@ -18,6 +19,7 @@ class PageBlockResource extends JsonResource
             'id' => $this->id,
             'type' => $this->getType(),
             'order' => $this->order,
+            'blockable' => BlockableResource::make($this->whenLoaded('blockable')),
             'created_at' => $this->created_at->format('d-m-Y H:i:s'),
             'updated_at' => $this->updated_at->format('d-m-Y H:i:s'),
         ];

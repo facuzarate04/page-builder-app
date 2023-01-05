@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     public function page()
     {
-        return $this->hasOne(Page::class, 'owner_id');
+        return $this->hasOne(Page::class, 'owner_id')->where('is_active', true);
     }
 }

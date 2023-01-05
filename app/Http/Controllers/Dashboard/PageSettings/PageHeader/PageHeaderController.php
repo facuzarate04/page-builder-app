@@ -47,6 +47,6 @@ class PageHeaderController extends Controller
             return redirect()->back()->with('error', 'Something went wrong');
         }
 
-        return redirect()->route('page.index')->with('success', 'Page header updated successfully');
+        return redirect()->back()->with('success', 'Page header updated successfully');
     }
 }

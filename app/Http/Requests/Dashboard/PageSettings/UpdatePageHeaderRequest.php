@@ -26,7 +26,7 @@ class UpdatePageHeaderRequest extends FormRequest
         return [
             'id' => 'required|exists:page_headers,id',
             'title' => 'required|string|max:80',
-            'subtitle' => 'required|string|max:180',
+            'subtitle' => 'nullable|string|max:180',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'avatar_is_active' => 'required|boolean',
             'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',

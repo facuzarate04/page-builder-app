@@ -2,6 +2,7 @@
 
 namespace App\Models\Page;
 
+use App\Models\Page\Links\PageLinkItem;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,6 +20,11 @@ class PageLink extends Model
     public function block()
     {
         return $this->morphOne(PageBlock::class, 'blockable');
+    }
+
+    public function linkItems()
+    {
+        return $this->hasMany(PageLinkItem::class, 'page_link_id');
     }
 
 }
