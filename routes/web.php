@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\PageSettings\PageLink\PageLinkItemController;
 use App\Http\Controllers\Dashboard\PageSettings\PageSocial\DeletePageSocialLinkController;
 use App\Http\Controllers\Dashboard\PageSettings\PageSocial\PageSocialController;
 use App\Http\Controllers\Dashboard\PageSettings\PageSocial\UpsertPageSocialLinksController;
+use App\Http\Controllers\Dashboard\SettingsPage\UpdateBlocksOrderController;
 use App\Http\Controllers\Page\IndexPageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -27,9 +28,7 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'canRegister' => Route::has('register')
     ]);
 });
 
@@ -39,6 +38,7 @@ Route::get('/dashboard', function () {
 
 Route::prefix('page')->name('page.')->middleware(['auth', 'verified', 'has.page'])->group(function(){
     Route::get('/', IndexPageSettingsController::class)->name('index');
+    Route::put('/', UpdateBlocksOrderController::class)->name('order');
 
     Route::name('header.')->prefix('header')->group(function(){
         Route::get('/', [PageHeaderController::class, 'index'])->name('index');
@@ -68,4 +68,4 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('{username}', IndexPageController::class)->name('index');
+Route::get('{username}', IndexPageController::class)->name('landing.index');

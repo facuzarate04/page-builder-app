@@ -15,6 +15,7 @@ class PageBlock extends Model
         'page_id',
         'blockable_id',
         'blockable_type',
+        'order'
     ];
 
     public function page()
