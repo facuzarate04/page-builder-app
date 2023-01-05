@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Dashboard\IndexPageSettingsController;
 use App\Http\Controllers\Dashboard\PageSettings\PageHeader\PageHeaderController;
+use App\Http\Controllers\Dashboard\PageSettings\PageLink\PageLinkController;
+use App\Http\Controllers\Dashboard\PageSettings\PageLink\PageLinkItemController;
+use App\Http\Controllers\Dashboard\PageSettings\PageSocial\DeletePageSocialLinkController;
 use App\Http\Controllers\Dashboard\PageSettings\PageSocial\PageSocialController;
 use App\Http\Controllers\Dashboard\PageSettings\PageSocial\UpsertPageSocialLinksController;
 use App\Http\Controllers\Page\IndexPageController;
@@ -45,6 +48,13 @@ Route::prefix('page')->name('page.')->middleware(['auth', 'verified', 'has.page'
         Route::get('/', [PageSocialController::class, 'index'])->name('index');
         Route::name('links.')->prefix('{pageSocial}/links')->group(function(){
             Route::put('/', UpsertPageSocialLinksController::class)->name('upsert');
+        });
+    });
+    Route::name('link.')->prefix('link')->group(function(){
+        Route::get('/', [PageLinkController::class, 'index'])->name('index');
+        Route::name('items.')->prefix('{pageLink}/items')->group(function(){
+            Route::post('/', [PageLinkItemController::class, 'store'])->name('store');
+            Route::put('{item}', [PageLinkItemController::class, 'update'])->name('update');
         });
     });
 

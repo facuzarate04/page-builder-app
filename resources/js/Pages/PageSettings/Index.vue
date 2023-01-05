@@ -37,7 +37,7 @@ const props = defineProps({
                     <!-- Links -->
                     <div v-if="BlockModel.isLinkBlock(block.type)" class="bg-white p-10 shadow-sm rounded-md flex items-center justify-between">
                         <span class="font-semibold">Links</span>
-                        <Link :href="route('dashboard')">
+                        <Link :href="route('page.link.index')">
                             <ChevronDownIcon class="h-6 w-6"/>
                         </Link>
                     </div>
@@ -65,7 +65,7 @@ const props = defineProps({
                 </BlockEmptyState>
                 <BlockEmptyState v-if="!BlockModel.hasLinkBlock(blocks.data)" 
                     :blockName="'Links Block'"
-                    :createUrl="route('dashboard')">
+                    :createUrl="route('page.link.index')">
                     <template #icon>
                         <LinkIcon class="h-6 w-6 mx-auto" aria-hidden="true" />
                     </template>

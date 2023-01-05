@@ -60,11 +60,8 @@ function updateSocialLinks() {
                                 <input v-model="platform.username" type="text" name="username" id="username" class="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 px-3 py-2 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"  />
                             </div>
                         </div>
-                        <div class="mx-auto pt-2">
-                            <button @click="updateSocialLinks()" type="button" class="flex mx-auto items-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                                <PlusIcon class="-ml-1 mr-3 h-5 w-5" aria-hidden="true" />
-                                Save
-                            </button>
+                        <div class="flex justify-end pt-2">
+                            <button @click="updateSocialLinks()" type="button" class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
                         </div>
                     </div>
                 </div>
