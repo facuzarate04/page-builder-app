@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm } from '@inertiajs/inertia-vue3';
-import { ChevronDownIcon, ComputerDesktopIcon, LinkIcon, GlobeAltIcon, ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
+import { ChevronDownIcon, ComputerDesktopIcon, LinkIcon, GlobeAltIcon, ArrowTopRightOnSquareIcon, Bars4Icon } from '@heroicons/vue/24/solid'
 import { Link } from '@inertiajs/inertia-vue3'
 import BlockModel from '@/Models/Block.js'
 import BlockEmptyState from '@/Components/PageSettings/BlockEmptyState.vue';
@@ -20,10 +20,8 @@ const form = useForm({
     __method: 'PUT',
 });
 
-function order()
-{
+function order() {
     props.blocks.data.forEach((block, index) => {
-        console.log(block.type, index + 1)
         block.order = index + 1;
     });
     
@@ -33,7 +31,6 @@ function order()
             form.reset();
         },
     });
-
 }
 
 </script>
@@ -60,6 +57,7 @@ function order()
                     <template #item="{ element }">
                         <div class="list-group-item">
                             <div v-if="BlockModel.isHeaderBlock(element.type)" class="bg-white p-10 shadow-sm rounded-md flex items-center justify-between mt-2">
+                                <Bars4Icon class="h-6 w-6 cursor-pointer"/>
                                 <span class="font-semibold">Header</span>
                                 <Link :href="route('page.header.index')">
                                     <ChevronDownIcon class="h-6 w-6"/>
@@ -67,6 +65,7 @@ function order()
                             </div>
                             <!-- Links -->
                             <div v-if="BlockModel.isLinkBlock(element.type)" class="bg-white p-10 shadow-sm rounded-md flex items-center justify-between mt-2">
+                                <Bars4Icon class="h-6 w-6 cursor-pointer"/>
                                 <span class="font-semibold">Links</span>
                                 <Link :href="route('page.link.index')">
                                     <ChevronDownIcon class="h-6 w-6"/>
@@ -74,6 +73,7 @@ function order()
                             </div>
                             <!-- Socials -->
                             <div v-if="BlockModel.isSocialBlock(element.type)" class="bg-white p-10 shadow-sm rounded-md flex items-center justify-between mt-2">
+                                <Bars4Icon class="h-6 w-6 cursor-pointer"/>
                                 <span class="font-semibold">Socials</span>
                                 <Link :href="route('page.social.index')">
                                     <ChevronDownIcon class="h-6 w-6"/>

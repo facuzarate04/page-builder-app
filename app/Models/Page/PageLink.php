@@ -28,7 +28,7 @@ class PageLink extends Model
 
     public function linkItems()
     {
-        return $this->hasMany(PageLinkItem::class, 'page_link_id');
+        return $this->hasMany(PageLinkItem::class, 'page_link_id')->orderBy('order');
     }
 
 }

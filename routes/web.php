@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\IndexPageSettingsController;
 use App\Http\Controllers\Dashboard\PageSettings\PageHeader\PageHeaderController;
 use App\Http\Controllers\Dashboard\PageSettings\PageLink\PageLinkController;
 use App\Http\Controllers\Dashboard\PageSettings\PageLink\PageLinkItemController;
+use App\Http\Controllers\Dashboard\PageSettings\PageLink\UpdatePageLinkItemsOrderController;
 use App\Http\Controllers\Dashboard\PageSettings\PageSocial\DeletePageSocialLinkController;
 use App\Http\Controllers\Dashboard\PageSettings\PageSocial\PageSocialController;
 use App\Http\Controllers\Dashboard\PageSettings\PageSocial\UpsertPageSocialLinksController;
@@ -54,6 +55,7 @@ Route::prefix('page')->name('page.')->middleware(['auth', 'verified', 'has.page'
         Route::get('/', [PageLinkController::class, 'index'])->name('index');
         Route::name('items.')->prefix('{pageLink}/items')->group(function(){
             Route::post('/', [PageLinkItemController::class, 'store'])->name('store');
+            Route::put('/', UpdatePageLinkItemsOrderController::class)->name('order');
             Route::put('{item}', [PageLinkItemController::class, 'update'])->name('update');
         });
     });

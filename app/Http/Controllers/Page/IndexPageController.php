@@ -25,6 +25,7 @@ class IndexPageController extends Controller
                             'blockable' => function(MorphTo $morphTo) {
                                 return $morphTo->morphWith([
                                     PageSocial::class => ['socialLinks.platform'],
+                                    PageLink::class => ['linkItems']
                                 ]);
                             }
                         ])

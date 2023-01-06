@@ -1,9 +1,10 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { ChevronUpIcon, PencilSquareIcon, CheckIcon, PlusIcon } from '@heroicons/vue/24/solid'
+import { ChevronUpIcon, PencilSquareIcon, CheckIcon, PlusIcon, Bars4Icon } from '@heroicons/vue/24/solid'
 import { Head, useForm, Link } from '@inertiajs/inertia-vue3';
 import { Switch } from '@headlessui/vue'
 import { ref } from '@vue/reactivity';
+import Draggable from 'vuedraggable'
 
 const props = defineProps({
     pageLink: {
@@ -28,6 +29,24 @@ function saveLink() {
             form.reset();
         }}
 )};
+
+const orderForm = useForm({
+    links: props.links,
+    __method: 'PUT',
+});
+
+function order() {
+    props.links.forEach((link, index) => {
+        link.order = index + 1;
+    });
+    
+    orderForm.put(route('page.link.items.order', {pageLink: props.pageLink.id}), {
+        preserveScroll: true,
+        onSuccess: () => {
+            orderForm.reset();
+        },
+    });
+}
 
 </script>
 
@@ -69,12 +88,26 @@ function saveLink() {
                         </form>
                     </div>
                     <div class="max-w-xl mx-auto w-full">
-                        <div v-for="link in links" 
-                            :key="link.id" 
-                            class="mt-1 rounded-xl inline-flex shadow-sm bg-indigo-600 p-2 text-white w-full"
+                        <Draggable
+                            :list="links"
+                            item-key="id"
+                            class="list-group"
+                            ghost-class="ghost"
+                            @change="order"
+                            @start="dragging = true"
+                            @end="dragging = false"
                         >
-                                <span class="mx-auto">{{link.title}}</span>
-                        </div>
+                            <template #item="{ element }">
+                                <div class="list-group-item">
+                                    <div class="mt-1 rounded-xl inline-flex shadow-sm bg-indigo-600 p-2 text-white w-full"
+                                    >
+                                        <Bars4Icon class="h-6 w-6 cursor-pointer"/>
+                                        <span class="mx-auto">{{element.title}}</span>
+                                    </div>
+                                </div>
+                            </template>
+                        </Draggable>
+                        
                     </div>
                 </div>
             </div>

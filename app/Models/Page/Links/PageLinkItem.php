@@ -15,7 +15,8 @@ class PageLinkItem extends Model
     protected $fillable = [
         'page_link_id',
         'title',
-        'url'
+        'url',
+        'order',
     ];
 
     public function pageLink()
