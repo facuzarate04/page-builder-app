@@ -27,7 +27,7 @@ let titleOnEdit = ref(false);
 let subtitleOnEdit = ref(false);
 
 function update() {
-    form.put(route('page.header.update', {pageHeader: form.id} ), {
+    form.put(route('dashboard.page.header.update', {pageHeader: form.id} ), {
         preserveScroll: true,
         onSuccess: () => {
             form.reset('title', 'subtitle', 'avatar', 'avatar_is_active', 'banner', 'banner_is_active');
@@ -50,7 +50,7 @@ function update() {
                 <div class="bg-white p-10 shadow-sm rounded-md space-y-4">
                     <div class="flex items-center justify-between">
                         <span class="font-semibold">Header Block</span>
-                        <Link :href="route('page.index')">
+                        <Link :href="route('dashboard.page.index')">
                             <ChevronUpIcon class="h-6 w-6"/>
                         </Link>
                     </div>

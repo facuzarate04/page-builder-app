@@ -22,9 +22,4 @@ class PageLinkItemController extends Controller
             return redirect()->back()->with('error', 'Something went wrong');
         }
     }
-
-    public function update(UpdatePageLinkItemRequest $request)
-    {
-        
-    }
 }

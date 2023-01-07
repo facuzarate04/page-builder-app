@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Page;
+namespace App\Http\Controllers\PagePublic;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Dashboard\PageBlockResource;
-use App\Models\Page\PageHeader;
 use App\Models\Page\PageLink;
 use App\Models\Page\PageSocial;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class IndexPageController extends Controller
+class IndexPagePublicController extends Controller
 {
     public function __invoke(string $username)
     {
@@ -35,7 +33,7 @@ class IndexPageController extends Controller
             ])
             ->firstOrFail();
 
-        return Inertia::render('MyPage/Index', [
+        return Inertia::render('PagePublic/Index', [
             'owner' => $owner,
             'blocks' => PageBlockResource::collection($owner->page->blocks),
         ]);

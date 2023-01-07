@@ -23,7 +23,7 @@ const form = useForm({
 });
 
 function saveLink() {
-    form.post(route('page.link.items.store', props.pageLink.id), {
+    form.post(route('dashboard.page.link.items.store', props.pageLink.id), {
         preserveScroll: true,
         onSuccess: () => {
             form.reset();
@@ -40,7 +40,7 @@ function order() {
         link.order = index + 1;
     });
     
-    orderForm.put(route('page.link.items.order', {pageLink: props.pageLink.id}), {
+    orderForm.put(route('dashboard.page.link.items.order', {pageLink: props.pageLink.id}), {
         preserveScroll: true,
         onSuccess: () => {
             orderForm.reset();
@@ -63,7 +63,7 @@ function order() {
                 <div class="bg-white p-10 shadow-sm rounded-md space-y-4">
                     <div class="flex items-center justify-between">
                         <span class="font-semibold">Links Block</span>
-                        <Link :href="route('page.index')">
+                        <Link :href="route('dashboard.page.index')">
                             <ChevronUpIcon class="h-6 w-6"/>
                         </Link>
                     </div>

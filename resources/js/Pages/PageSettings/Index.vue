@@ -25,7 +25,7 @@ function order() {
         block.order = index + 1;
     });
     
-    form.put(route('page.order'), {
+    form.put(route('dashboard.page.order'), {
         preserveScroll: true,
         onSuccess: () => {
             form.reset();
@@ -59,7 +59,7 @@ function order() {
                             <div v-if="BlockModel.isHeaderBlock(element.type)" class="bg-white p-10 shadow-sm rounded-md flex items-center justify-between mt-2">
                                 <Bars4Icon class="h-6 w-6 cursor-pointer"/>
                                 <span class="font-semibold">Header</span>
-                                <Link :href="route('page.header.index')">
+                                <Link :href="route('dashboard.page.header.index')">
                                     <ChevronDownIcon class="h-6 w-6"/>
                                 </Link>
                             </div>
@@ -67,7 +67,7 @@ function order() {
                             <div v-if="BlockModel.isLinkBlock(element.type)" class="bg-white p-10 shadow-sm rounded-md flex items-center justify-between mt-2">
                                 <Bars4Icon class="h-6 w-6 cursor-pointer"/>
                                 <span class="font-semibold">Links</span>
-                                <Link :href="route('page.link.index')">
+                                <Link :href="route('dashboard.page.link.index')">
                                     <ChevronDownIcon class="h-6 w-6"/>
                                 </Link>
                             </div>
@@ -75,7 +75,7 @@ function order() {
                             <div v-if="BlockModel.isSocialBlock(element.type)" class="bg-white p-10 shadow-sm rounded-md flex items-center justify-between mt-2">
                                 <Bars4Icon class="h-6 w-6 cursor-pointer"/>
                                 <span class="font-semibold">Socials</span>
-                                <Link :href="route('page.social.index')">
+                                <Link :href="route('dashboard.page.social.index')">
                                     <ChevronDownIcon class="h-6 w-6"/>
                                 </Link>
                             </div>
@@ -85,21 +85,21 @@ function order() {
                 
                 <BlockEmptyState v-if="!BlockModel.hasHeaderBlock(blocks.data)" 
                     :blockName="'Header Block'"
-                    :createUrl="route('page.header.index')">
+                    :createUrl="route('dashboard.page.header.index')">
                     <template #icon>
                         <ComputerDesktopIcon class="h-6 w-6 mx-auto" aria-hidden="true" />
                     </template>
                 </BlockEmptyState>
                 <BlockEmptyState v-if="!BlockModel.hasSocialBlock(blocks.data)" 
                     :blockName="'Socials Block'"
-                    :createUrl="route('page.social.index')">
+                    :createUrl="route('dashboard.page.social.update')">
                     <template #icon>
                         <GlobeAltIcon class="h-6 w-6 mx-auto" aria-hidden="true" />
                     </template>
                 </BlockEmptyState>
                 <BlockEmptyState v-if="!BlockModel.hasLinkBlock(blocks.data)" 
                     :blockName="'Links Block'"
-                    :createUrl="route('page.link.index')">
+                    :createUrl="route('dashboard.page.link.index')">
                     <template #icon>
                         <LinkIcon class="h-6 w-6 mx-auto" aria-hidden="true" />
                     </template>

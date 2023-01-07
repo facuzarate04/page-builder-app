@@ -24,7 +24,7 @@ const updateForm = useForm({
 });
 
 function updateSocialLinks() {
-    updateForm.put(route('page.social.links.upsert', { pageSocial: props.pageSocial.id }), {
+    updateForm.put(route('dashboard.page.social.links.upsert', { pageSocial: props.pageSocial.id }), {
         preserveScroll: true,
         onSuccess: () => {
             updateForm.reset();
@@ -47,7 +47,7 @@ function updateSocialLinks() {
                 <div class="bg-white p-10 shadow-sm rounded-md space-y-4">
                     <div class="flex items-center justify-between">
                         <span class="font-semibold">Socials Block</span>
-                        <Link :href="route('page.index')">
+                        <Link :href="route('dashboard.page.index')">
                             <ChevronUpIcon class="h-6 w-6"/>
                         </Link>
                     </div>
