@@ -21,7 +21,7 @@ Route::prefix('page')->name('page.')->middleware(['has.page'])->group(function()
 
     Route::name('header.')->prefix('header')->group(function(){
         Route::get('/', [PageHeaderController::class, 'index'])->name('index');
-        Route::put('{pageHeader}', [PageHeaderController::class, 'update'])->name('update');
+        Route::put('{pageHeader}', [PageHeaderController::class, 'update'])->name('update')->can('update', 'pageHeader');
     });
     Route::name('social.')->prefix('social')->group(function(){
         Route::get('/', [PageSocialController::class, 'index'])->name('index');

@@ -5,6 +5,8 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 
 use App\Models\Page\Links\PageLinkItem;
+use App\Models\Page\PageHeader;
+use App\Policies\Dashboard\PageSettings\PageHeader\PageHeaderPolicy;
 use App\Policies\Dashboard\PageSettings\PageLink\PageLinkItemPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -16,8 +18,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
         PageLinkItem::class => PageLinkItemPolicy::class,
+        PageHeader::class => PageHeaderPolicy::class
     ];
 
     /**
