@@ -34,6 +34,7 @@ Route::prefix('page')->name('page.')->middleware(['has.page'])->group(function()
         Route::name('items.')->prefix('{pageLink}/items')->group(function(){
             Route::post('/', [PageLinkItemController::class, 'store'])->name('store');
             Route::put('/', UpdatePageLinkItemsOrderController::class)->name('order');
+            Route::delete('{pageLinkItem}', [PageLinkItemController::class, 'destroy'])->name('destroy')->can('delete', 'pageLinkItem');
         });
     });
 

@@ -23,38 +23,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PlatformsSeeder::class);
 
-        $john = \App\Models\User::factory()->has(
-            Page::factory(),
-            'page'
-        )->create([
+        $john = \App\Models\User::factory()->create([
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'username' => 'john.doe'
         ]);
-
-        $pageHeader = PageHeader::factory()->create([
-            'page_id' => $john->page->id
-        ]);
-        $pageLink = PageLink::factory()->create([
-            'page_id' => $john->page->id
-        ]);
-        $pageSocial = PageSocial::factory()->create([
-            'page_id' => $john->page->id
-        ]);
-        
-        $pageHeader->block()->create([
-            'page_id' => $john->page->id,
-            'order' => 1
-        ]);
-        $pageLink->block()->create([
-            'page_id' => $john->page->id,
-            'order' => 2
-        ]);
-        $pageSocial->block()->create([
-            'page_id' => $john->page->id,
-            'order' => 3
-        ]);
-
 
         $jane = \App\Models\User::factory()->create([
             'name' => 'Jane Doe',

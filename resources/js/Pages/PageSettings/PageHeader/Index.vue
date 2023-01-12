@@ -4,6 +4,7 @@ import { ChevronUpIcon, PencilSquareIcon, CheckIcon } from '@heroicons/vue/24/so
 import { Head, useForm, Link } from '@inertiajs/inertia-vue3';
 import { Switch } from '@headlessui/vue'
 import { ref } from '@vue/reactivity';
+import { Inertia } from '@inertiajs/inertia';
 
 const props = defineProps({
     header: {
@@ -23,14 +24,14 @@ const form = useForm({
     __method: 'PUT'
 });
 
-let titleOnEdit = ref(false);
-let subtitleOnEdit = ref(false);
+const titleOnEdit = ref(false);
+const subtitleOnEdit = ref(false);
 
 function update() {
     form.put(route('dashboard.page.header.update', {pageHeader: form.id} ), {
         preserveScroll: true,
         onSuccess: () => {
-            form.reset('title', 'subtitle', 'avatar', 'avatar_is_active', 'banner', 'banner_is_active');
+            Inertia.reload({ only: ['header'] });
         },
     });
 }

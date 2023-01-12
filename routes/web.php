@@ -32,6 +32,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::prefix('dashboard')->name('dashboard.')->group(__DIR__.'/web/dashboard.php')->middleware(['auth', 'verified']);
+Route::middleware(['auth', 'verified'])->prefix('dashboard')->name('dashboard.')->group(__DIR__.'/web/dashboard.php');
 
 Route::get('{username}', IndexPagePublicController::class)->name('landing.index');

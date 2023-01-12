@@ -1,10 +1,11 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { ChevronUpIcon, PencilSquareIcon, CheckIcon, PlusIcon, Bars4Icon } from '@heroicons/vue/24/solid'
+import { ChevronUpIcon, Bars4Icon, TrashIcon } from '@heroicons/vue/24/solid'
 import { Head, useForm, Link } from '@inertiajs/inertia-vue3';
 import { Switch } from '@headlessui/vue'
 import { ref } from '@vue/reactivity';
 import Draggable from 'vuedraggable'
+import { Inertia } from '@inertiajs/inertia';
 
 const props = defineProps({
     pageLink: {
@@ -46,6 +47,19 @@ function order() {
             orderForm.reset();
         },
     });
+}
+
+function destroy(element) {
+    Inertia.delete(route('dashboard.page.link.items.destroy', 
+            {pageLink: props.pageLink.id, pageLinkItem: element.id}
+        ), 
+        {
+            preserveScroll: true,
+            onSuccess: () => {
+                Inertia.reload({ only: ['links'] });
+            },
+        }
+    );
 }
 
 </script>
@@ -103,6 +117,7 @@ function order() {
                                     >
                                         <Bars4Icon class="h-6 w-6 cursor-pointer"/>
                                         <span class="mx-auto">{{element.title}}</span>
+                                        <TrashIcon @click="destroy(element)" class="h-6 w-6 cursor-pointer"/>
                                     </div>
                                 </div>
                             </template>

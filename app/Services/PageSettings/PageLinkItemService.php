@@ -23,4 +23,18 @@ class PageLinkItemService
 
         return $pageLinkItem;
     }
+
+    public function destroy(PageLinkItem $pageLinkItem): void
+    {
+        DB::beginTransaction();
+        try {
+            $pageLinkItem->delete();
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            throw $th;
+        }
+
+        return;
+    }
 }

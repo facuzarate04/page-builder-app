@@ -92,7 +92,7 @@ function order() {
                 </BlockEmptyState>
                 <BlockEmptyState v-if="!BlockModel.hasSocialBlock(blocks.data)" 
                     :blockName="'Socials Block'"
-                    :createUrl="route('dashboard.page.social.update')">
+                    :createUrl="route('dashboard.page.social.index')">
                     <template #icon>
                         <GlobeAltIcon class="h-6 w-6 mx-auto" aria-hidden="true" />
                     </template>
